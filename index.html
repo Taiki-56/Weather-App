@@ -31,6 +31,7 @@
         </form>
         <form method="post">
           <input
+            id="searchInput"
             type="text"
             placeholder="search for city"
             class="border border-black pl-2 w-[121px]" />
@@ -173,5 +174,24 @@
       </section>
     </div>
     <script src="./scripts/index.js"></script>
+    <script>
+      /* city auto complete */
+      window.initMap = () => {
+        const searchInput = document.getElementById("searchInput");
+        // search only cities
+        const options = {
+          types: ["(cities)"],
+        };
+
+        const autoComplete = new google.maps.places.Autocomplete(
+          searchInput,
+          options
+        );
+      };
+    </script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4ZEyVWjmdiIPUoF87sRLTOqT6_jrrxes&libraries=places&callback=initMap"></script>
   </body>
 </html>
