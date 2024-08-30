@@ -17,21 +17,24 @@
     <div>
       <section class="flex justify-between items-center p-5">
         <form
+          id="fav-cities-form"
           method="post"
           class="w-fit">
-          <label for="city">Favorite city:</label>
+          <label for="fav-cities">Favorite city:</label>
           <select
             name="city"
-            id="city"
+            id="fav-cities"
             class="border border-black pl-2 w-[121px]">
-            <option value="Fukuoka">Fukuoka</option>
+            <!-- <option value="Fukuoka">Fukuoka</option>
             <option value="Toronto">Toronto</option>
-            <option value="Vancouver">Vancouver</option>
+            <option value="Vancouver">Vancouver</option> -->
           </select>
         </form>
-        <form method="post">
+        <form
+          id="search-form"
+          method="post">
           <input
-            id="searchInput"
+            id="search-input"
             type="text"
             placeholder="search for city"
             class="border border-black pl-2 w-[121px]" />
@@ -41,15 +44,19 @@
         <h3>Current Weather</h3>
         <div class="border flex flex-col items-center">
           <div class="flex">
-            <h4 class="inline-block w-auto max-w-max">City Name</h4>
+            <h4
+              id="city-name"
+              class="inline-block w-auto max-w-max"></h4>
             <button
-              id="favButton"
+              id="fav-button"
               class="ml-5">
               <i class="fa-regular fa-star"></i>
               <!-- <i class="fa-solid fa-star"></i> -->
             </button>
           </div>
-          <p class="inline-block w-auto max-w-max">#°C</p>
+          <p
+            id="current-temp"
+            class="inline-block w-auto max-w-max"></p>
           <img
             src="../images/example.jpeg"
             alt="weather info"
@@ -173,11 +180,13 @@
         </div>
       </section>
     </div>
-    <script src="./scripts/index.js"></script>
+    <script
+      src="./scripts/index.js"
+      type="module"></script>
     <script>
       /* city auto complete */
       window.initMap = () => {
-        const searchInput = document.getElementById("searchInput");
+        const searchInput = document.getElementById("search-input");
         // search only cities
         const options = {
           types: ["(cities)"],
@@ -187,6 +196,26 @@
           searchInput,
           options
         );
+
+        autoComplete.addListener("place_changed", () => {
+          const place = autoComplete.getPlace();
+          if (place.address_components) {
+            // get city name
+            const city = place.address_components.find((component) =>
+              component.types.includes("locality")
+            );
+            if (city) {
+              let selectedCity = city.long_name;
+              localStorage.setItem("selectedCity", selectedCity);
+              console.log("Selected city:", selectedCity);
+              window.location.reload();
+            } else {
+              console.log("City not found in place details");
+            }
+          } else {
+            console.log("Place details not found");
+          }
+        });
       };
     </script>
     <script
