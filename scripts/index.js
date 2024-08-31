@@ -1,14 +1,24 @@
+// todo reset local storage for test
+// localStorage.clear();
+
 const apiKey = "3b2df1883208190d986bcd1b1e48eff4";
 let defaultCity = "Toronto";
 let selectedCity = localStorage.getItem("selectedCity") || "";
-console.log(selectedCity);
-// localStorage.clear();
 let favCities = JSON.parse(localStorage.getItem("favCity")) || [];
-console.log("local strage: " + favCities);
 
-//* fav city select and form element
+//* for fav city dropdown's default
+let selectIndexNum = JSON.parse(localStorage.getItem("selectIndexNum")) || 0;
+
+//* there are 3 types of weather in weather api
+const weathers = ["Clear", "Rain", "Clouds"];
+
+//* fav city select & form element
 const favCityForm = document.getElementById("fav-cities-form");
 const favCitySelect = document.getElementById("fav-cities");
+
+//* search city input & form element
+const searchForm = document.getElementById("search-form");
+const searchInput = document.getElementById("search-input");
 
 //* fav button element and star icon element
 const favButton = document.getElementById("fav-button");
@@ -23,24 +33,38 @@ const isDefaultCity = () => {
   }
 };
 
-//* get city from city search input
 document.addEventListener("DOMContentLoaded", () => {
-  favCities.forEach((favCity) => {
-    const newOption = document.createElement("option");
-    newOption.value = favCity;
-    newOption.innerHTML = favCity;
-    favCitySelect.appendChild(newOption);
-  });
+  if (favCities.length !== 0) {
+    favCities.forEach((favCity) => {
+      const newOption = document.createElement("option");
+      newOption.value = favCity;
+      newOption.innerHTML = favCity;
+      favCitySelect.appendChild(newOption);
+    });
+  }
+  favCitySelect.selectedIndex = selectIndexNum;
 
-  const searchForm = document.getElementById("search-form");
-  searchForm.addEventListener("submit", (e) => {
+  //* select a city from favorites
+  favCityForm.addEventListener("change", (e) => {
     e.preventDefault();
-    const searchInput = document.getElementById("search-input");
-    selectedCity = searchInput.value;
+    selectedCity = favCitySelect.value;
     localStorage.setItem("selectedCity", selectedCity);
-    console.log(selectedCity);
+
+    //* uodate selectIndexNum
+    const selectIndexOf = setDefaultInSelectTag(selectedCity);
+    localStorage.setItem("selectIndexNum", selectIndexOf);
 
     //* reload the page
+    window.location.reload();
+  });
+
+  //* get city from city search input
+  searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    selectedCity = searchInput.value;
+    localStorage.setItem("selectedCity", selectedCity);
+    localStorage.removeItem("selectIndexNum");
+
     window.location.reload();
   });
 });
@@ -64,11 +88,17 @@ const kelvinToCelcius = (k) => {
 //* add city or remove from favorite
 favButton.addEventListener("click", () => {
   const city = isDefaultCity();
+
   if (icon.classList.contains("fa-regular")) {
     icon.classList.remove("fa-regular");
     icon.classList.add("fa-solid");
     favCities.push(city);
+
     localStorage.setItem("favCity", JSON.stringify(favCities));
+    localStorage.setItem(
+      "selectIndexNum",
+      JSON.stringify(favCities.length - 1)
+    );
 
     window.location.reload();
   } else if (icon.classList.contains("fa-solid")) {
@@ -76,6 +106,7 @@ favButton.addEventListener("click", () => {
     icon.classList.add("fa-regular");
     favCities = favCities.filter((element) => element !== city);
     localStorage.setItem("favCity", JSON.stringify(favCities));
+    localStorage.removeItem("selectIndexNum");
 
     window.location.reload();
   }
@@ -92,33 +123,13 @@ const isFavorite = (city) => {
   }
 };
 
-// //* add city to favorite
-// const addFavoriteCity = (city) => {
-//   favoriteCities = localStorage.getItem("favoriteCities");
-//   console.log("Before adding: ", favoriteCities);
-
-//   favoriteCities.push(city);
-//   console.log("After adding: ", favoriteCities);
-//   localStorage.setItem("favoriteCities", JSON.stringify(favoriteCities));
-// };
-
-//* get weather pic according to weather
-const getWeatherPic = () => {
-  const weathers = ["Clear", "Rain", "Clouds"];
+//* set the default in select tag for fav cities
+const setDefaultInSelectTag = (city) => {
+  return favCities.indexOf(city);
 };
 
-// //* remove city from favorite
-// const removeFavoriteCity = (city) => {
-//   favoriteCities = localStorage.getItem("favoriteCities");
-//   console.log("Before removing: ", favoriteCities);
-
-//   favoriteCities = favoriteCities.filter((element) => element !== city);
-//   console.log("After removing: ", favoriteCities);
-//   localStorage.setItem("favoriteCities", JSON.stringify(favoriteCities));
-// };
-
-//* find all fav cities and show them in select tag
-const showFavoriteCities = () => {};
+//* get weather pic according to weather
+const getWeatherPic = () => {};
 
 //* excute functions
 window.onload = async () => {
@@ -133,12 +144,9 @@ window.onload = async () => {
   } else {
     await isFavorite(selectedCity);
     const weather = await getWeatherInfo(selectedCity, apiKey);
-    console.log(selectedCity);
     const cityName = document.getElementById("city-name");
     cityName.innerHTML = selectedCity;
     const cel = await kelvinToCelcius(weather[0].main.temp);
     currentTemp.innerHTML = cel + "°C";
-
-    // console.log(weather);
   }
 };
