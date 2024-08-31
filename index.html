@@ -24,11 +24,7 @@
           <select
             name="city"
             id="fav-cities"
-            class="border border-black pl-2 w-[121px]">
-            <!-- <option value="Fukuoka">Fukuoka</option>
-            <option value="Toronto">Toronto</option>
-            <option value="Vancouver">Vancouver</option> -->
-          </select>
+            class="border border-black pl-2 w-[121px]"></select>
         </form>
         <form
           id="search-form"
@@ -51,7 +47,6 @@
               id="fav-button"
               class="ml-5">
               <i class="fa-regular fa-star"></i>
-              <!-- <i class="fa-solid fa-star"></i> -->
             </button>
           </div>
           <p
@@ -207,7 +202,8 @@
             if (city) {
               let selectedCity = city.long_name;
               localStorage.setItem("selectedCity", selectedCity);
-              console.log("Selected city:", selectedCity);
+              localStorage.removeItem("selectIndexNum");
+
               window.location.reload();
             } else {
               console.log("City not found in place details");
