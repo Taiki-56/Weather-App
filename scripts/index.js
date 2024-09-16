@@ -7,8 +7,6 @@ let selectedCity = localStorage.getItem("selectedCity") || "";
 let favCities = JSON.parse(localStorage.getItem("favCity")) || [];
 let selectedDay = JSON.parse(localStorage.getItem("selectedDay")) || 1;
 
-console.log(selectedDay);
-
 //* for fav city dropdown's default
 let selectIndexNum = JSON.parse(localStorage.getItem("selectIndexNum")) || 0;
 
@@ -506,13 +504,13 @@ window.onload = async () => {
     currentTemp.innerHTML = cel + "°C";
     const img = getWeatherImg(weather[0].weather[0].main);
     currentImg.src = img;
+    changeImg(weather[0].weather[0].main);
 
     showDaily(weather);
     showThreeHours(weather);
   } else {
     await isFavorite(selectedCity);
     const weather = await getWeatherInfo(selectedCity, apiKey);
-    console.log(weather);
 
     const cityName = document.getElementById("city-name");
     cityName.innerHTML = selectedCity;
@@ -520,8 +518,50 @@ window.onload = async () => {
     currentTemp.innerHTML = cel + "°C";
     const img = getWeatherImg(weather[0].weather[0].main);
     currentImg.src = img;
+    changeImg(weather[0].weather[0].main);
 
     showDaily(weather);
     showThreeHours(weather);
   }
 };
+
+const body = document.getElementById("body");
+
+function changeImg(weather) {
+  if (weather === "Clear") {
+    if (body.classList.contains("bg-[url('/./images/clear3.png')]")) {
+      body.classList.remove("bg-[url('/./images/clear3.png')]");
+      body.classList.add("bg-[url('/./images/clear3.png')]");
+    } else if (body.classList.contains("bg-[url('/./images/clouds3.png')]")) {
+      body.classList.remove("bg-[url('/./images/clouds3.png')]");
+      body.classList.add("bg-[url('/./images/clear3.png')]");
+    } else if (body.classList.contains("bg-[url('/./images/rain3.png')]")) {
+      body.classList.remove("bg-[url('/./images/rain3.png')]");
+      body.classList.add("bg-[url('/./images/clear3.png')]");
+    }
+  }
+  if (weather === "Rain") {
+    if (body.classList.contains("bg-[url('/./images/clear3.png')]")) {
+      body.classList.remove("bg-[url('/./images/clear3.png')]");
+      body.classList.add("bg-[url('/./images/rain3.png')]");
+    } else if (body.classList.contains("bg-[url('/./images/clouds3.png')]")) {
+      body.classList.remove("bg-[url('/./images/clouds3.png')]");
+      body.classList.add("bg-[url('/./images/rain3.png')]");
+    } else if (body.classList.contains("bg-[url('/./images/rain3.png')]")) {
+      body.classList.remove("bg-[url('/./images/rain3.png')]");
+      body.classList.add("bg-[url('/./images/rain3.png')]");
+    }
+  }
+  if (weather === "Clouds") {
+    if (body.classList.contains("bg-[url('/./images/clear3.png')]")) {
+      body.classList.remove("bg-[url('/./images/clear3.png')]");
+      body.classList.add("bg-[url('/./images/clouds3.png')]");
+    } else if (body.classList.contains("bg-[url('/./images/clouds3.png')]")) {
+      body.classList.remove("bg-[url('/./images/clouds3.png')]");
+      body.classList.add("bg-[url('/./images/clouds2.png')]");
+    } else if (body.classList.contains("bg-[url('/./images/rain3.png')]")) {
+      body.classList.remove("bg-[url('/./images/rain3.png')]");
+      body.classList.add("bg-[url('/./images/clouds3.png')]");
+    }
+  }
+}
