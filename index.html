@@ -2,206 +2,217 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="./index.css" />
+    <link rel="stylesheet" href="./index.css" />
     <script
       src="https://kit.fontawesome.com/bdd3e54af0.js"
-      crossorigin="anonymous"></script>
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <body>
+  <body id="body" class="bg-[url('/./images/clear3.png')] bg-cover bg-center h-screen w-screen ">
+  </div>
     <div>
       <section class="flex justify-between items-center p-5">
-        <form
-          id="fav-cities-form"
-          method="post"
-          class="w-fit">
+        <form id="fav-cities-form" method="post" class="w-fit">
           <label for="fav-cities">Favorite city:</label>
           <select
             name="city"
             id="fav-cities"
-            class="border border-black pl-2 w-[121px]"></select>
+            class="border border-black pl-2 w-[121px] bg-gray-200"
+          ></select>
         </form>
-        <form
-          id="search-form"
-          method="post">
+        <form id="search-form" method="post">
           <input
             id="search-input"
             type="text"
             placeholder="search for city"
-            class="border border-black pl-2 w-[121px]" />
+            class="border border-black pl-2 w-[121px] bg-gray-200"
+          />
         </form>
       </section>
-      <section class="flex flex-col p-5">
-        <h3>Current Weather</h3>
-        <div class="border flex flex-col items-center">
-          <div class="flex">
-            <h4
-              id="city-name"
-              class="inline-block w-auto max-w-max"></h4>
-            <button
-              id="fav-button"
-              class="ml-5">
-              <i class="fa-regular fa-star"></i>
-            </button>
+      <section class="flex flex-col items-center px-5">
+        <h3 class="w-80">Current Weather</h3>
+        <div class="border border-black flex flex-col items-center rounded-md bg-gray-200 bg-opacity-30 w-80">
+          <div class="flex w-80 justify-between">
+            <div class="w-[68px]"></div>
+            <div class="flex items-center">
+              <h4 id="city-name" class="inline-block w-auto max-w-max p-2.5"></h4>
+            </div>
+            <div class="flex pr-7">
+              <button id="fav-button" class="ml-5">
+                <i class="fa-regular fa-star text-yellow-300"></i>
+              </button>
+            </div>
           </div>
-          <p
-            id="current-temp"
-            class="inline-block w-auto max-w-max"></p>
+          <p id="current-temp" class="inline-block w-auto max-w-max"></p>
           <img
             id="current-img"
             src="./images/clear.png"
             alt="weather info"
-            class="w-40 h-auto" />
+            class="w-40 h-auto p-2.5"
+          />
         </div>
       </section>
       <section class="p-5">
-        <h3>Daily Forecast - 5 days</h3>
-        <div class="border w-full flex p-5">
+        <h3>5-Day Weather Forecast</h3>
+        <div class=" w-full flex p-5">
           <div class="w-full flex justify-between">
             <div
               id="day-1-dev"
-              class="border p-2 flex flex-col items-center">
+              class="border border-black p-2 flex flex-col items-center w-56 bg-gray-200 bg-opacity-30  rounded-md"
+            >
               <p id="day-1-date">Day 1</p>
               <img
                 id="day-1-img"
                 src="./images/clear.png"
                 alt="Day 1"
-                class="w-20 h-auto" />
+                class="w-20 h-auto"
+              />
               <p id="day-1-temp">#°C</p>
             </div>
             <div
               id="day-2-dev"
-              class="border p-2 flex flex-col items-center">
+              class="border border-black p-2 flex flex-col items-center w-56 bg-gray-200 bg-opacity-30 rounded-md"
+            >
               <p id="day-2-date">Day 2</p>
               <img
                 id="day-2-img"
                 src="./images/clear.png"
                 alt="Day 2"
-                class="w-20 h-auto" />
+                class="w-20 h-auto"
+              />
               <p id="day-2-temp">#°C</p>
             </div>
             <div
               id="day-3-dev"
-              class="border p-2 flex flex-col items-center">
+              class="border border-black p-2 flex flex-col items-center w-56 bg-gray-200 bg-opacity-30 rounded-md"
+            >
               <p id="day-3-date">Day 3</p>
               <img
                 id="day-3-img"
                 src="./images/clear.png"
                 alt="Day 3"
-                class="w-20 h-auto" />
+                class="w-20 h-auto"
+              />
               <p id="day-3-temp">#°C</p>
             </div>
             <div
               id="day-4-dev"
-              class="border p-2 flex flex-col items-center">
+              class="border border-black p-2 flex flex-col items-center w-56 bg-gray-200 bg-opacity-30  rounded-md"
+            >
               <p id="day-4-date">Day 4</p>
               <img
                 id="day-4-img"
                 src="./images/clear.png"
                 alt="Day 4"
-                class="w-20 h-auto" />
+                class="w-20 h-auto"
+              />
               <p id="day-4-temp">#°C</p>
             </div>
             <div
               id="day-5-dev"
-              class="border p-2 flex flex-col items-center">
+              class="border border-black p-2 flex flex-col items-center w-56 bg-gray-200 bg-opacity-30 rounded-md"
+            >
               <p id="day-5-date">Day 5</p>
               <img
                 id="day-5-img"
                 src="./images/clear.png"
                 alt="Day 5"
-                class="w-20 h-auto" />
+                class="w-20 h-auto"
+              />
               <p id="day-5-temp">#°C</p>
             </div>
           </div>
         </div>
       </section>
-      <section class="p-5">
-        <h3>3 hours range</h3>
-        <div class="border w-full flex justify-between p-5">
-          <div class="border flex flex-col p-2 items-center">
+      <section class="px-5">
+        <h3>Hourly Weather</h3>
+        <div class="w-full flex justify-between p-5">
+          <div class="border border-black flex flex-col p-2 items-center w-36 bg-gray-200 bg-opacity-30 rounded-md">
             <p>2 am</p>
             <img
               id="2-img"
               class="size-20"
               src="./images/clear.png"
-              alt="0-3" />
+              alt="0-3"
+            />
             <p id="2-temp">#°C</p>
           </div>
-          <div class="border flex flex-col p-2 items-center">
+          <div class="border border-black flex flex-col p-2 items-center w-36 bg-gray-200 bg-opacity-30 rounded-md">
             <p>5 am</p>
             <img
               id="5-img"
               class="size-20"
               src="./images/clear.png"
-              alt="0-3" />
+              alt="0-3"
+            />
             <p id="5-temp">#°C</p>
           </div>
-          <div class="border flex flex-col p-2 items-center">
+          <div class="border border-black flex flex-col p-2 items-center w-36 bg-gray-200 bg-opacity-30 rounded-md">
             <p>8 am</p>
             <img
               id="8-img"
               class="size-20"
               src="./images/clear.png"
-              alt="0-3" />
+              alt="0-3"
+            />
             <p id="8-temp">#°C</p>
           </div>
-          <div class="border flex flex-col p-2 items-center">
+          <div class="border border-black flex flex-col p-2 items-center w-36 bg-gray-200 bg-opacity-30 rounded-md">
             <p>11 am</p>
             <img
               id="11-img"
               class="size-20"
               src="./images/clear.png"
-              alt="0-3" />
+              alt="0-3"
+            />
             <p id="11-temp">#°C</p>
           </div>
-          <div class="border flex flex-col p-2 items-center">
+          <div class="border border-black flex flex-col p-2 items-center w-36 bg-gray-200 bg-opacity-30 rounded-md">
             <p>2 pm</p>
             <img
               id="14-img"
               class="size-20"
               src="./images/clear.png"
-              alt="0-3" />
+              alt="0-3"
+            />
             <p id="14-temp">#°C</p>
           </div>
-          <div class="border flex flex-col p-2 items-center">
+          <div class="border border-black flex flex-col p-2 items-center w-36 bg-gray-200 bg-opacity-30 rounded-md">
             <p>5 pm</p>
             <img
               id="17-img"
               class="size-20"
               src="./images/clear.png"
-              alt="0-3" />
+              alt="0-3"
+            />
             <p id="17-temp">#°C</p>
           </div>
-          <div class="border flex flex-col p-2 items-center">
+          <div class="border border-black flex flex-col p-2 items-center w-36 bg-gray-200 bg-opacity-30 rounded-md">
             <p>8 pm</p>
             <img
               id="20-img"
               class="size-20"
               src="./images/clear.png"
-              alt="0-3" />
+              alt="0-3"
+            />
             <p id="20-temp">#°C</p>
           </div>
-          <div class="border flex flex-col p-2 items-center">
+          <div class="border border-black flex flex-col p-2 items-center w-36 bg-gray-200 bg-opacity-30 rounded-md">
             <p>11 pm</p>
             <img
               id="23-img"
               class="size-20"
               src="./images/clear.png"
-              alt="0-3" />
+              alt="0-3"
+            />
             <p id="23-temp">#°C</p>
           </div>
         </div>
       </section>
     </div>
-    <script
-      src="./scripts/index.js"
-      type="module"></script>
+    <script src="./scripts/index.js" type="module"></script>
     <script>
       /* city auto complete */
       window.initMap = () => {
@@ -241,6 +252,7 @@
     <script
       async
       defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4ZEyVWjmdiIPUoF87sRLTOqT6_jrrxes&libraries=places&callback=initMap"></script>
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4ZEyVWjmdiIPUoF87sRLTOqT6_jrrxes&libraries=places&callback=initMap"
+    ></script>
   </body>
 </html>
