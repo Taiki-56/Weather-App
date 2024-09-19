@@ -66,6 +66,15 @@ const seventeenTemp = document.getElementById("17-temp");
 const twentyTemp = document.getElementById("20-temp");
 const twentyThreeTemp = document.getElementById("23-temp");
 
+const twoHum = document.getElementById("2-hum");
+const fiveHum = document.getElementById("5-hum");
+const eightHum = document.getElementById("8-hum");
+const elevenHum = document.getElementById("11-hum");
+const fourteenHum = document.getElementById("14-hum");
+const seventeenHum = document.getElementById("17-hum");
+const twentyHum = document.getElementById("20-hum");
+const twentyThreeHum = document.getElementById("23-hum");
+
 //* change selected day to show 3 hourn range weather
 day1Div.addEventListener("click", () => {
   selectedDay = 1;
@@ -207,11 +216,13 @@ const showDaily = (weather) => {
     // TODO because of API for this project, we can get 3 hours range * 5 days, which means can't get the weather info which already has past, so show the last weather info of the day
     if (hour === 23 && differenceInDays === 0) {
       const { stringDay, stringMonth } = dayAndMonthToString(day, month);
-      day1Date.innerHTML = `${stringMonth} ${date} ${stringDay}`;
+      day1Date.innerHTML = `${stringMonth} ${date}  ${stringDay}`;
       const cel = kelvinToCelcius(element.main.temp);
       day1Temp.innerHTML = `${cel}°C`;
       const img = getWeatherImg(element.weather[0].main);
       day1Img.src = img;
+      const hum = element.main.humidity;
+      twoHum.innerHTML = `${hum}%`;
     } else if (hour === 23 && differenceInDays === 1) {
       const { stringDay, stringMonth } = dayAndMonthToString(day, month);
       day2Date.innerHTML = `${stringMonth} ${date} ${stringDay}`;
@@ -240,6 +251,8 @@ const showDaily = (weather) => {
       day5Temp.innerHTML = `${cel}°C`;
       const img = getWeatherImg(element.weather[0].main);
       day5Img.src = img;
+
+      console.log(weather[0]);
     }
   });
 };
@@ -256,131 +269,211 @@ const showThreeHours = (weather) => {
       if (hour === 2) {
         twoTemp.innerHTML = `${cel}°C`;
         twoImg.src = img;
+        const hum = element.main.humidity;
+        twoHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 5) {
         fiveTemp.innerHTML = `${cel}°C`;
         fiveImg.src = img;
+        const hum = element.main.humidity;
+        fiveHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 8) {
         eightTemp.innerHTML = `${cel}°C`;
         eightImg.src = img;
+        const hum = element.main.humidity;
+        eightHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 11) {
         elevenTemp.innerHTML = `${cel}°C`;
         elevenImg.src = img;
+        const hum = element.main.humidity;
+        elevenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 14) {
         fourteenTemp.innerHTML = `${cel}°C`;
         fourteenImg.src = img;
+        const hum = element.main.humidity;
+        fourteenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 17) {
         seventeenTemp.innerHTML = `${cel}°C`;
         seventeenImg.src = img;
+        const hum = element.main.humidity;
+        seventeenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 20) {
         twentyTemp.innerHTML = `${cel}°C`;
         twentyImg.src = img;
+        const hum = element.main.humidity;
+        twentyHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 23) {
         twentyThreeTemp.innerHTML = `${cel}°C`;
         twentyThreeImg.src = img;
+        const hum = element.main.humidity;
+        twentyThreeHum.innerHTML = `Humidity: ${hum}%`;
       }
     } else if (selectedDay === 2 && differenceInDays === 1) {
       if (hour === 2) {
         twoTemp.innerHTML = `${cel}°C`;
         twoImg.src = img;
+        const hum = element.main.humidity;
+        twoHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 5) {
         fiveTemp.innerHTML = `${cel}°C`;
         fiveImg.src = img;
+        const hum = element.main.humidity;
+        fiveHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 8) {
         eightTemp.innerHTML = `${cel}°C`;
         eightImg.src = img;
+        const hum = element.main.humidity;
+        eightHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 11) {
         elevenTemp.innerHTML = `${cel}°C`;
         elevenImg.src = img;
+        const hum = element.main.humidity;
+        elevenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 14) {
         fourteenTemp.innerHTML = `${cel}°C`;
         fourteenImg.src = img;
+        const hum = element.main.humidity;
+        fourteenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 17) {
         seventeenTemp.innerHTML = `${cel}°C`;
         seventeenImg.src = img;
+        const hum = element.main.humidity;
+        seventeenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 20) {
         twentyTemp.innerHTML = `${cel}°C`;
         twentyImg.src = img;
+        const hum = element.main.humidity;
+        twentyHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 23) {
         twentyThreeTemp.innerHTML = `${cel}°C`;
         twentyThreeImg.src = img;
+        const hum = element.main.humidity;
+        twentyThreeHum.innerHTML = `Humidity: ${hum}%`;
       }
     } else if (selectedDay === 3 && differenceInDays === 2) {
       if (hour === 2) {
         twoTemp.innerHTML = `${cel}°C`;
         twoImg.src = img;
+        const hum = element.main.humidity;
+        twoHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 5) {
         fiveTemp.innerHTML = `${cel}°C`;
         fiveImg.src = img;
+        const hum = element.main.humidity;
+        fiveHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 8) {
         eightTemp.innerHTML = `${cel}°C`;
         eightImg.src = img;
+        const hum = element.main.humidity;
+        eightHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 11) {
         elevenTemp.innerHTML = `${cel}°C`;
         elevenImg.src = img;
+        const hum = element.main.humidity;
+        elevenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 14) {
         fourteenTemp.innerHTML = `${cel}°C`;
         fourteenImg.src = img;
+        const hum = element.main.humidity;
+        fourteenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 17) {
         seventeenTemp.innerHTML = `${cel}°C`;
         seventeenImg.src = img;
+        const hum = element.main.humidity;
+        seventeenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 20) {
         twentyTemp.innerHTML = `${cel}°C`;
         twentyImg.src = img;
+        const hum = element.main.humidity;
+        twentyHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 23) {
         twentyThreeTemp.innerHTML = `${cel}°C`;
         twentyThreeImg.src = img;
+        const hum = element.main.humidity;
+        twentyThreeHum.innerHTML = `Humidity: ${hum}%`;
       }
     } else if (selectedDay === 4 && differenceInDays === 3) {
       if (hour === 2) {
         twoTemp.innerHTML = `${cel}°C`;
         twoImg.src = img;
+        const hum = element.main.humidity;
+        twoHum.innerHTML = `Humidity:  ${hum}%`;
       } else if (hour === 5) {
         fiveTemp.innerHTML = `${cel}°C`;
         fiveImg.src = img;
+        const hum = element.main.humidity;
+        fiveHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 8) {
         eightTemp.innerHTML = `${cel}°C`;
         eightImg.src = img;
+        const hum = element.main.humidity;
+        eightHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 11) {
         elevenTemp.innerHTML = `${cel}°C`;
         elevenImg.src = img;
+        const hum = element.main.humidity;
+        elevenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 14) {
         fourteenTemp.innerHTML = `${cel}°C`;
         fourteenImg.src = img;
+        const hum = element.main.humidity;
+        fourteenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 17) {
         seventeenTemp.innerHTML = `${cel}°C`;
         seventeenImg.src = img;
+        const hum = element.main.humidity;
+        seventeenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 20) {
         twentyTemp.innerHTML = `${cel}°C`;
         twentyImg.src = img;
+        const hum = element.main.humidity;
+        twentyHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 23) {
         twentyThreeTemp.innerHTML = `${cel}°C`;
         twentyThreeImg.src = img;
+        const hum = element.main.humidity;
+        twentyThreeHum.innerHTML = `Humidity: ${hum}%`;
       }
     } else if (selectedDay === 5 && differenceInDays === 4) {
       if (hour === 2) {
         twoTemp.innerHTML = `${cel}°C`;
         twoImg.src = img;
+        const hum = element.main.humidity;
+        twoHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 5) {
         fiveTemp.innerHTML = `${cel}°C`;
         fiveImg.src = img;
+        const hum = element.main.humidity;
+        fiveHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 8) {
         eightTemp.innerHTML = `${cel}°C`;
         eightImg.src = img;
+        const hum = element.main.humidity;
+        eightHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 11) {
         elevenTemp.innerHTML = `${cel}°C`;
         elevenImg.src = img;
+        const hum = element.main.humidity;
+        elevenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 14) {
         fourteenTemp.innerHTML = `${cel}°C`;
         fourteenImg.src = img;
+        const hum = element.main.humidity;
+        fourteenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 17) {
         seventeenTemp.innerHTML = `${cel}°C`;
         seventeenImg.src = img;
+        const hum = element.main.humidity;
+        seventeenHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 20) {
         twentyTemp.innerHTML = `${cel}°C`;
         twentyImg.src = img;
+        const hum = element.main.humidity;
+        twentyHum.innerHTML = `Humidity: ${hum}%`;
       } else if (hour === 23) {
         twentyThreeTemp.innerHTML = `${cel}°C`;
         twentyThreeImg.src = img;
+        const hum = element.main.humidity;
+        twentyThreeHum.innerHTML = `Humidity: ${hum}%`;
       }
     }
   });
@@ -490,6 +583,11 @@ const getWeatherImg = (weather) => {
 
   return img;
 };
+
+// const getWeatherHum = (humidity) => {
+//   const hum =
+//   return hum;
+// };
 
 //* excute functions
 window.onload = async () => {
