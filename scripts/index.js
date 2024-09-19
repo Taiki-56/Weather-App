@@ -216,7 +216,7 @@ const showDaily = (weather) => {
     // TODO because of API for this project, we can get 3 hours range * 5 days, which means can't get the weather info which already has past, so show the last weather info of the day
     if (hour === 23 && differenceInDays === 0) {
       const { stringDay, stringMonth } = dayAndMonthToString(day, month);
-      day1Date.innerHTML = `${stringMonth} ${date}  ${stringDay}`;
+      day1Date.innerHTML = `${stringMonth} ${date} ${stringDay}`;
       const cel = kelvinToCelcius(element.main.temp);
       day1Temp.innerHTML = `${cel}°C`;
       const img = getWeatherImg(element.weather[0].main);
@@ -251,8 +251,6 @@ const showDaily = (weather) => {
       day5Temp.innerHTML = `${cel}°C`;
       const img = getWeatherImg(element.weather[0].main);
       day5Img.src = img;
-
-      console.log(weather[0]);
     }
   });
 };
@@ -583,11 +581,6 @@ const getWeatherImg = (weather) => {
 
   return img;
 };
-
-// const getWeatherHum = (humidity) => {
-//   const hum =
-//   return hum;
-// };
 
 //* excute functions
 window.onload = async () => {
